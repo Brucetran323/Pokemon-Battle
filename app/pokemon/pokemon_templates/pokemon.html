@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% for i in pokemon %}
+<div class="card text-center" style="width: 18rem;">
+    <img src="{{pokemon['Front Shiny']}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h2 class="card-title">{{pokemon['Name'].title()}}!</h2>
+        <p class="card-text">Ability : {{pokemon['Ability'].title()}} </p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Base HP : {{pokemon['Base HP']}}</li>
+        <li class="list-group-item">Base Attack : {{pokemon['Base ATK']}}</li>
+        <li class="list-group-item">Base Defense : {{pokemon['Base DEF']}}</li>
+
+    </ul>
+    <div class="card-body">
+        <a href="/findpoke" class="btn btn-danger" role="button">Search for antoher Pokemon!</a>
+        {% if current_user.is_authenticated %}
+        <a href="#" class="btn btn-secondary" role="button">Catch Me!</a>
+        {% else %}
+        <a href="/login" class="btn btn-secondary" role="button">Login to Catch Me!</a>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% if pokemon == None %}
+<div id="registration" class="card text-center bg-danger" style="width: 18rem;">
+    <img src="https://64.media.tumblr.com/c8b03315f4657e20b910b72d04c492cb/tumblr_p4oungyX8I1vkw0o9o1_1280.gif"
+        class="card-img-top" alt="EMPTY BALL">
+    <div class="card-body">
+        <h1 class="card-title">Pokemon not found!</h1>
+        <form method="POST">
+        </form>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
