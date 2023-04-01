@@ -2,40 +2,111 @@
 
 
 {% block content %}
-{% for i in pokemon %}
-<div class="card text-center" style="width: 18rem;">
-    <img src="{{pokemon['Front Shiny']}}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h2 class="card-title">{{pokemon['Name'].title()}}!</h2>
-        <p class="card-text">Ability : {{pokemon['Ability'].title()}} </p>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Base HP : {{pokemon['Base HP']}}</li>
-        <li class="list-group-item">Base Attack : {{pokemon['Base ATK']}}</li>
-        <li class="list-group-item">Base Defense : {{pokemon['Base DEF']}}</li>
 
-    </ul>
-    <div class="card-body">
-        <a href="/findpoke" class="btn btn-danger" role="button">Search for antoher Pokemon!</a>
-        {% if current_user.is_authenticated %}
-        <a href="#" class="btn btn-secondary" role="button">Catch Me!</a>
-        {% else %}
-        <a href="/login" class="btn btn-secondary" role="button">Login to Catch Me!</a>
-        {% endif %}
+{% if pokemon1['Name'] and pokemon2['Name'] and pokemon3['Name'] and pokemon4['Name'] and pokemon5['Name']%}
+<div class="card-group">
+    <div class="card text-center" style="width: 18rem;">
+        <img src="{{pokemon1['Front Shiny']}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">{{pokemon1['Name'].title()}}!</h2>
+            <p class="card-text">Ability : {{pokemon1['Ability'].title()}} </p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Pokemon ID : {{pokemon1['Id']}}</li>
+                <li class="list-group-item">Base HP : {{pokemon1['Base HP']}}</li>
+                <li class="list-group-item">Base Attack : {{pokemon1['Base ATK']}}</li>
+                <li class="list-group-item">Base Defense : {{pokemon1['Base DEF']}}</li>
+            </ul>
+            <a href="{{ url_for('pokemon.catchPokemon',p_img=pokemon1['Front Shiny'], p_id=pokemon1['Id']) }}" 
+            class="btn btn-danger">Catch Me!</a>
+            <a href="#" class="btn btn-warning">View Me!</a>
+        </div>
+    </div>
+
+
+    <div class="card text-center" style="width: 18rem;">
+        <img src="{{pokemon2['Front Shiny']}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">{{pokemon2['Name'].title()}}!</h2>
+            <p class="card-text">Ability : {{pokemon2['Ability'].title()}} </p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Pokemon ID : {{pokemon2['Id']}}</li>
+                <li class="list-group-item">Base HP : {{pokemon2['Base HP']}}</li>
+                <li class="list-group-item">Base Attack : {{pokemon2['Base ATK']}}</li>
+                <li class="list-group-item">Base Defense : {{pokemon2['Base DEF']}}</li>
+            </ul>
+            <a href="#" class="btn btn-danger">Catch Me!</a>
+            <a href="#" class="btn btn-warning">View Me!</a>
+        </div>
+    </div>
+
+
+    <div class="card text-center" style="width: 18rem;">
+        <img src="{{pokemon3['Front Shiny']}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">{{pokemon3['Name'].title()}}!</h2>
+            <p class="card-text">Ability : {{pokemon3['Ability'].title()}} </p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Pokemon ID : {{pokemon3['Id']}}</li>
+                <li class="list-group-item">Base HP : {{pokemon3['Base HP']}}</li>
+                <li class="list-group-item">Base Attack : {{pokemon3['Base ATK']}}</li>
+                <li class="list-group-item">Base Defense : {{pokemon3['Base DEF']}}</li>
+            </ul>
+            <a href="#" class="btn btn-danger">Catch Me!</a>
+            <a href="#" class="btn btn-warning">View Me!</a>
+        </div>
+    </div>
+
+
+    <div class="card text-center" style="width: 18rem;">
+        <img src="{{pokemon4['Front Shiny']}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">{{pokemon4['Name'].title()}}!</h2>
+            <p class="card-text">Ability : {{pokemon4['Ability'].title()}} </p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Pokemon ID : {{pokemon4['Id']}}</li>
+                <li class="list-group-item">Base HP : {{pokemon4['Base HP']}}</li>
+                <li class="list-group-item">Base Attack : {{pokemon4['Base ATK']}}</li>
+                <li class="list-group-item">Base Defense : {{pokemon4['Base DEF']}}</li>
+            </ul>
+            <a href="#" class="btn btn-danger">Catch Me!</a>
+            <a href="#" class="btn btn-warning">View Me!</a>
+        </div>
+    </div>
+
+
+    <div class="card text-center" style="width: 18rem;">
+        <img src="{{pokemon5['Front Shiny']}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">{{pokemon5['Name'].title()}}!</h2>
+            <p class="card-text">Ability : {{pokemon5['Ability'].title()}} </p>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Pokemon ID : {{pokemon5['Id']}}</li>
+                <li class="list-group-item">Base HP : {{pokemon5['Base HP']}}</li>
+                <li class="list-group-item">Base Attack : {{pokemon5['Base ATK']}}</li>
+                <li class="list-group-item">Base Defense : {{pokemon5['Base DEF']}}</li>
+            </ul>
+            <a href="#" class="btn btn-danger">Catch Me!</a>
+            <a href="#" class="btn btn-warning">View Me!</a>
+        </div>
+
     </div>
 </div>
-{% endfor %}
 
-{% if pokemon == None %}
+
+
+{% else %}
+
 <div id="registration" class="card text-center bg-danger" style="width: 18rem;">
     <img src="https://64.media.tumblr.com/c8b03315f4657e20b910b72d04c492cb/tumblr_p4oungyX8I1vkw0o9o1_1280.gif"
         class="card-img-top" alt="EMPTY BALL">
     <div class="card-body">
-        <h1 class="card-title">Pokemon not found!</h1>
+        <h1 class="card-title">Suprise! Here's NOTHING</h1>
         <form method="POST">
         </form>
     </div>
 </div>
+
 {% endif %}
 
 {% endblock %}

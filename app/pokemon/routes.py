@@ -5,8 +5,8 @@ from .getpoke import findpokemon
 from ..forms import SignUpForm, LoginForm, findPoke
 from ..models import Trainer, Pokemon, teams
 
-@pokemon.route('/show-pokemon/<int:pokemon_id>')
-def showPokemon():
-    form = findPoke()
-    return render_template('pokemon.html', form = form)
+@pokemon.route('/catch-em/<p_img>/<int:p_id>')
+def catchPokemon(p_img,p_id):
+    return render_template('catch-me.html', pokemon1 = p_id, pokemon2 = p_img)
+
 
