@@ -16,7 +16,7 @@
                 <li class="list-group-item">Base Attack : {{pokemon1['Base ATK']}}</li>
                 <li class="list-group-item">Base Defense : {{pokemon1['Base DEF']}}</li>
             </ul>
-            <a href="{{ url_for('pokemon.catchPokemon',p_img=pokemon1['Front Shiny'], p_id=pokemon1['Id']) }}" 
+            <a href="{{ url_for('pokemon.catchPokemon', p_id=pokemon1['Id']) }}" 
             class="btn btn-danger">Catch Me!</a>
             <a href="#" class="btn btn-warning">View Me!</a>
         </div>
