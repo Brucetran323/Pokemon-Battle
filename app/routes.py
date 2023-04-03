@@ -15,13 +15,26 @@ def randomPokemon():
         random_list.append(random.randint(1,1015))
     for i in random_list:
         poke = findpokemon(i)
-        poke_stuff.append(poke)
+        poke_stuff.append(poke)  
+    for p in poke_stuff:
+        poke_id = p['Id']
+        poke_db = Pokemon.query.filter_by(poke_id=poke_id).first()
+        if poke_db == None:
+            poke = findpokemon(poke_id)
+            pokemon = Pokemon(picture=poke['Front Shiny'], pokemon_name=poke['Name'], poke_id=poke['Id'] , ability=poke['Ability'],
+                            base_hp=poke['Base HP'], base_attack=poke['Base ATK'], base_defense=poke['Base DEF'])
+            pokemon.savePokemon()
     p1 = poke_stuff[0]
     p2 = poke_stuff[1]
     p3 = poke_stuff[2]
     p4 = poke_stuff[3]
     p5 = poke_stuff[4]
+    # for p in poke_stuff:
+    #     poke_db = Pokemon.query.filter_by()
     return render_template('pokemon.html', pokemon1=p1,pokemon2=p2,pokemon3=p3,pokemon4=p4,pokemon5=p5, form=form)
+
+
+
 
 
 
