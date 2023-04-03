@@ -24,7 +24,7 @@
                     <ul class="dropdown-menu bg-danger">
                 {% if current_user.is_authenticated %}
                 </li>
-                <li><a class="dropdown-item text-warning text-center" href="#"><i class="fa-solid fa-users-gear"></i> {{current_user.first_name.title()}}'s Profile</a></li>
+                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('pokemon.showMyPokemon') }}"><i class="fa-solid fa-users-gear"></i> {{current_user.first_name.title()}}'s Profile</a></li>
                 <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.logOut') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                 </li>
                 {% else %}

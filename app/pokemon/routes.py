@@ -20,3 +20,13 @@ def catchPokemon(p_id):
         print(pokemon_info)
         return render_template('catch-me.html', pokemon = pokemon_info)
     
+@pokemon.route('/my-pokemon')
+def showMyPokemon():
+    my_pokemon = current_user.caught.all()
+    x = my_pokemon[0]
+    poke = Pokemon.query.filter_by(x = x).first()
+    print(my_pokemon[0])
+    print(poke)
+    return render_template('my-pokemon.html')
+
+    
