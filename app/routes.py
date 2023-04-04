@@ -6,6 +6,11 @@ from .forms import SignUpForm, LoginForm, findPoke
 from .models import Trainer, Pokemon 
 import random
 
+@app.route('/')
+def homePage():
+    form = findPoke()
+    return render_template('index.html', form = form)
+
 @app.route('/random')
 def randomPokemon():
     form = findPoke()
@@ -24,6 +29,7 @@ def randomPokemon():
             pokemon = Pokemon(picture=poke['Front Shiny'], pokemon_name=poke['Name'], poke_id=poke['Id'] , ability=poke['Ability'],
                             base_hp=poke['Base HP'], base_attack=poke['Base ATK'], base_defense=poke['Base DEF'])
             pokemon.savePokemon()
+            
     p1 = poke_stuff[0]
     p2 = poke_stuff[1]
     p3 = poke_stuff[2]
@@ -34,14 +40,3 @@ def randomPokemon():
     return render_template('pokemon.html', pokemon1=p1,pokemon2=p2,pokemon3=p3,pokemon4=p4,pokemon5=p5, form=form)
 
 
-
-
-
-
-
-
-
-@app.route('/')
-def homePage():
-    form = findPoke()
-    return render_template('index.html', form = form)

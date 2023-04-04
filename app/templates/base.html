@@ -36,7 +36,6 @@
 <body>
 
     {% include 'nav.html' %}
-    {% include 'footer.html' %}
     {% block content %}
 
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -44,7 +43,7 @@
 
     {% for c, m in messages %}
 
-    <div class="alert alert-{{ c }} alert-dismissible fade show text-danger" role="alert">
+    <div class="alert alert-{{ c }} alert-dismissible fade show text-danger" role="alert" id="flash">
         <strong>{{ m }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

@@ -4,12 +4,6 @@
 {% block content %}
 
 {% if pokemon: %}
-{% if count != 5 %}
-<div class=" bg-dark text-danger text-center pt-2 ">
-    <h1><i class="fa-solid fa-triangle-exclamation"></i>YOU NEED 5 POKEMON TO BATTLE!<i class="fa-solid fa-triangle-exclamation"></i></h1>
-</div>
-{% endif %}
-<a href="{{ url_for('pokemon.releaseAll') }}" class="btn btn-danger">Kill them all!</a>
 {% for p in pokemon %}
 <div class="card text-center" style="width: 18rem;">
     <img src="{{p.picture}}" class="card-img-top" alt="...">
@@ -21,7 +15,6 @@
             <li class="list-group-item">Base HP : {{p.base_hp}}</li>
             <li class="list-group-item">Base Attack : {{p.base_attack}}</li>
             <li class="list-group-item">Base Defense : {{p.base_defense}}</li>
-            <a href="{{ url_for('pokemon.releasePokemon', p_id = p.id)}}" class="btn btn-warning">Release me!</a>
         </ul>
     </div>
 </div>
@@ -31,9 +24,7 @@
     <img src="https://64.media.tumblr.com/c8b03315f4657e20b910b72d04c492cb/tumblr_p4oungyX8I1vkw0o9o1_1280.gifv"
         class="card-img-top" alt="empty ball">
     <div class="card-body">
-        <h5 class="card-title">Go catch something!</h5>
-        <p class="card-text">You've got no pokemon! Go catch some!</p>
-        <a href="/random" class="btn btn-warning">Poke-Slot-Machine</a>
+        <h5 class="card-title">They currently have NO Pokemon!</h5>
     </div>
 </div>
 {% endif %}

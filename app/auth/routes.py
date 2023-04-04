@@ -36,7 +36,12 @@ def registerPage():
             username = form.username.data
             email = form.email.data
             password = form.password.data
-
+            if Trainer.query.filter_by(username=username).first():
+                flash('That username already exists, please try another!', 'warning')
+                return redirect(url_for('auth.loginPage'))
+            if Trainer.query.filter_by(email=email).first():
+                flash('that email has been used previously, try again', 'warning')
+                return redirect(url_for('auth.loginPage'))
             trainer = Trainer(first_name, last_name, username, email, password)
             trainer.saveTrainer()
             return redirect (url_for('auth.loginPage'))

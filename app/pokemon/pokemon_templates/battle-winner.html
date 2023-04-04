@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="card text-center" style="width: 18rem;">
+    <img src="https://media.tenor.com/drDXuLjTQHkAAAAC/pikachu-pikachu-thunderbolt.gif" class="card-img-top" alt="SAD SAD SAD">
+    <div class="card-body">
+        <h2 class="card-title">You kicked some ass!</h2>
+        <p class="card-text">You showed that scrub who's boss!</p>
+    </div>
+    <div class="card-body">
+        <a href="{{ url_for('pokemon.battlePokemon') }}"><button type="button" class="btn btn-warning">Destroy another scrub!</button></a>
+        <a href="{{ url_for('pokemon.showMyPokemon') }}"><button type="button" class="btn btn-outline-warning">See my trash yocked!</button></a>
+    </div>
+</div>
+
+{% endblock %}

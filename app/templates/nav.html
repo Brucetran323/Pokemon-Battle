@@ -8,11 +8,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-bar">
                 <li class="nav-item">
-                    <a class="nav-link active text-danger" aria-current="page" href="/"><i class="fa-solid fa-house"></i> I Choose:Home!</a>
+                    <a class="nav-link active text-danger" aria-current="page" href="/"><i
+                            class="fa-solid fa-house"></i> I Choose:Home!</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-danger text-center" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-danger text-center" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         {% if current_user.is_authenticated %}
                         <i class="fa-solid fa-user"></i>
                         Account
@@ -22,22 +23,29 @@
                         {% endif %}
                     </a>
                     <ul class="dropdown-menu bg-danger">
-                {% if current_user.is_authenticated %}
+                        {% if current_user.is_authenticated %}
                 </li>
-                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('pokemon.showMyPokemon') }}"><i class="fa-solid fa-users-gear"></i> {{current_user.first_name.title()}}'s Profile</a></li>
-                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.logOut') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('pokemon.showMyPokemon') }}"><i
+                            class="fa-solid fa-users-gear"></i> {{current_user.first_name.title()}}'s Team</a></li>
+                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.logOut') }}"><i
+                            class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                 </li>
                 {% else %}
-                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.registerPage') }}"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.registerPage') }}"><i
+                            class="fa-solid fa-user-plus"></i> Register</a></li>
                 <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.loginPage') }}"><i class="fa-solid fa-door-open"></i> Login</a></li>
+                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.loginPage') }}"><i
+                            class="fa-solid fa-door-open"></i> Login</a></li>
                 {% endif %}
             </ul>
             </li>
             </ul>
             {% if current_user.is_authenticated %}
-            <a href="/random"><button type="button" class="btn btn-danger">Poke-Slot-Machine!</button></a>
+            <a href="/random"><button type="button" class="btn btn-outline-danger pl">Poke-Slot-Machine!</button></a>
+            <a href="{{ url_for('pokemon.battlePokemon') }}"><button type="button" class="btn btn-outline-warning">Ready for battle?</button></a>
+            <a href="{{ url_for('pokemon.leaderBoard') }}"><button type="button" class="btn btn-outline-info">Rankings!</button></a>
+            <a href="{{ url_for('pokemon.Teams') }}"><button type="button" class="btn btn-outline-success">View Teams!</button></a>
             {% endif %}
         </div>
     </div>

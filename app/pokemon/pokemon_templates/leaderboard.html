@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header text-center">
+        Leaderboards!
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for t in trainers %}
+        <li class="list-group-item text-center">{{t.first_name.title()}}:<br>Wins: {{t.wins}}<br>Losses: {{t.losses}}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock %}

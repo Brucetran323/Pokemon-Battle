@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="card text-center" style="width: 18rem;">
+    <img src="https://media.tenor.com/kjqof9l6gk8AAAAC/pikachu-sad.gif" class="card-img-top" alt="SAD SAD SAD">
+    <div class="card-body">
+        <h2 class="card-title">You lost....</h2>
+        <p class="card-text">Get a better team you scrub...</p>
+    </div>
+    <div class="card-body">
+        <a href="/random"><button type="button" class="btn btn-warning">Spin my losses away..</button></a>
+        <a href="{{ url_for('pokemon.showMyPokemon') }}"><button type="button" class="btn btn-outline-warning">See my trash team..</button></a>
+    </div>
+</div>
+
+{% endblock %}

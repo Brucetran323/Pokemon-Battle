@@ -21,12 +21,26 @@ class Trainer(db.Model, UserMixin):
     username = db.Column(db.String, nullable=False, unique=True)
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False, )
+    wins = db.Column(db.Integer, default=0)
+    losses = db.Column(db.Integer, default=0)
     caught = db.relationship('Pokemon',
                              secondary='teams',
                              backref= 'caught',
                              lazy='dynamic'
                              )
 
+    def __init__(self, first_name, last_name, username, email, password):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.username = username
+        self.email = email
+        self.password = generate_password_hash(password)
+        self.wins = 0
+        self.losses = 0
+
+    def saveTrainer(self):
+        db.session.add(self)
+        db.session.commit()   
     def catchPokemon(self, pokemon):
         self.caught.append(pokemon)
         db.session.commit()
@@ -35,18 +49,15 @@ class Trainer(db.Model, UserMixin):
         self.caught.remove(pokemon)
         db.session.commit()
 
-    def __init__(self, first_name, last_name, username, email, password):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.username = username
-        self.email = email
-        self.password = generate_password_hash(password)
-
-    def saveTrainer(self):
-        db.session.add(self)
+    def winner(self):
+        self.wins += 1
         db.session.commit()
 
+    def loser(self):
+        self.losses += 1
+        db.session.commit()
 
+        
 class Pokemon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     poke_id = db.Column(db.Integer, nullable=False, unique=True)

@@ -4,6 +4,10 @@
 {% block content %}
 
 {% if pokemon1['Name'] and pokemon2['Name'] and pokemon3['Name'] and pokemon4['Name'] and pokemon5['Name']%}
+<div class="border border-dark bg-dark text-center">
+<a href="{{ url_for('pokemon.catchAll', p1=pokemon1['Id'],p2=pokemon2['Id'],p3=pokemon3['Id'],p4=pokemon4['Id'],p5=pokemon5['Id'])}}"
+    class="btn btn-warning">Make this my team!</a>
+</div>
 <div class="card-group">
     <div class="card text-center" style="width: 18rem;">
         <img src="{{pokemon1['Front Shiny']}}" class="card-img-top" alt="...">
