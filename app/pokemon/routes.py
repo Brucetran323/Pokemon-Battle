@@ -1,7 +1,7 @@
 from ..models import Trainer, Pokemon, teams, db
 from ..forms import SignUpForm, LoginForm, findPoke
 from .getpoke import findpokemon
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 pokemon = Blueprint('pokemon', __name__, template_folder='pokemon_templates')
 

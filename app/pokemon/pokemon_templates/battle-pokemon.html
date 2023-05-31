@@ -2,6 +2,18 @@
 
 
 {% block content %}
+<div class="text-center">
+<h1 class="text-danger bg-dark ">Select a Trainer to battle!</h1>
+
+{% for t in trainers %}
+
+{% if t != current_user%}
+<a href="{{ url_for('pokemon.FinalBattle', t_id = t.id) }}" class="btn btn-dark text-center mb-2 text-danger">Trainer:
+    {{t.first_name.title()}}!</a>
+{% endif %}
+
+{% endfor %}
+</div>
 <h1 class="text-center text-danger bg-dark ">{{current_user.first_name.title()}}'s Pokemon!</h1>
 <div class="card-group">
     <div class="card text-center" style="width: 18rem;">
@@ -80,14 +92,4 @@
 
     </div>
 </div>
-<h1 class="text-danger bg-dark ">Select a Trainer to battle!</h1>
-
-{% for t in trainers %}
-
-{% if t != current_user%}
-<a href="{{ url_for('pokemon.FinalBattle', t_id = t.id) }}" class="btn btn-dark text-center">Trainer:
-    {{t.first_name.title()}}!</a>
-{% endif %}
-
-{% endfor %}
 {% endblock %}

@@ -19,6 +19,7 @@ def loginPage():
             print(trainer)
             if check_password_hash(trainer.password, password):
                 login_user(trainer)
+                flash('This is a flash message', 'success')
                 return redirect (url_for('homePage'))             
             else:
                 flash('nope!')
