@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, url_for, redirect, flash
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user, login_user, logout_user
 from .pokemon.getpoke import findpokemon
 from .forms import SignUpForm, LoginForm, findPoke
 from .models import Trainer, Pokemon 
@@ -12,7 +12,6 @@ def homePage():
     return render_template('index.html')
 
 @app.route('/random')
-@login_required
 def randomPokemon():
     random_numbers = []
     pokemon_list = []
@@ -29,7 +28,6 @@ def randomPokemon():
 #Add this to navbar! 
 #<li class="nav-item"><a class="nav-link active text-danger" aria-current="page" href="/send-it">Send it</a></li>
 @app.route('/send-it')
-@login_required
 def sendIt():
     pokeboi =[]
     count = 0

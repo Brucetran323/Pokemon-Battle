@@ -1,12 +1,11 @@
 from ..models import Trainer, Pokemon, teams, db
 from ..forms import SignUpForm, LoginForm, findPoke
 from .getpoke import findpokemon
-from flask_login import current_user, login_required
+from flask_login import current_user
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 pokemon = Blueprint('pokemon', __name__, template_folder='pokemon_templates')
 
 @pokemon.route('/view-team/poke/<int:t_id>')
-@login_required
 def viewTeamsPoke(t_id):
     trainer = Trainer.query.get(t_id)
     trainer_name = trainer.trainer_name
@@ -19,21 +18,18 @@ def viewTeamsPoke(t_id):
         return redirect(url_for('pokemon.Teams'))
 
 @pokemon.route('/teams')
-@login_required
 def Teams():
     teams =  Trainer.query.all()
     teams.remove(current_user)
     return render_template('teams.html', teams=teams)
 
 @pokemon.route('/rankings')
-@login_required
 def leaderBoard():
     trainers = Trainer.query.all()
     trainers.remove(current_user)
     return render_template('leaderboard.html', trainers=trainers)
 
 @pokemon.route('/my-pokemon')
-@login_required
 def showMyPokemon():
     pokemon_list = current_user.caught.all()
     count = len(pokemon_list)
@@ -45,7 +41,6 @@ def showMyPokemon():
         return redirect(url_for('randomPokemon'))
 
 @pokemon.route('/catch-em-all/<int:p1>/<int:p2>/<int:p3>/<int:p4>/<int:p5>/')
-@login_required
 def catchAll(p1,p2,p3,p4,p5):
     poke_list = [p1,p2,p3,p4,p5]
     print(poke_list)
@@ -58,14 +53,12 @@ def catchAll(p1,p2,p3,p4,p5):
     return redirect(url_for('pokemon.showMyPokemon'))
     
 @pokemon.route('/release-all')
-@login_required
 def releaseAll():
     current_user.caught = []
     db.session.commit()
     return redirect(url_for('pokemon.showMyPokemon'))
     
 @pokemon.route('/battle-em')
-@login_required
 def battlePokemon():
     current_user_poke_count = len(current_user.caught.all())
     if current_user_poke_count == 5:
@@ -87,7 +80,6 @@ def battlePokemon():
         return redirect(url_for('pokemon.showMyPokemon'))
     
 @pokemon.route('/final-battle/<int:t_id>')
-@login_required
 def FinalBattle(t_id):
     enemy = Trainer.query.get(t_id)
     print(f'{current_user} VS. {enemy}')
