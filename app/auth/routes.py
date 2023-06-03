@@ -13,18 +13,16 @@ def loginPage():
         if form.validate():
           username = form.username.data
           password = form.password.data
-          print(username, password)
         trainer = Trainer.query.filter_by(username=username).first()
         if trainer:
-            print(trainer)
             if check_password_hash(trainer.password, password):
                 login_user(trainer)
-                flash('This is a flash message', 'success')
+                flash(f'Welcome {trainer.trainer_name}!', 'success')
                 return redirect (url_for('homePage'))             
             else:
-                flash('nope!')
+                flash('Username or password incorrect!', 'danger')
         else:
-            flash('nope!',category='danger')
+            flash('Username or password incorrect!', 'danger')
     return render_template('login.html', form = form)
 
 @auth.route('/register', methods=['GET', 'POST'])
@@ -32,19 +30,15 @@ def registerPage():
     form = SignUpForm()
     if request.method == "POST":
         if form.validate():
-            first_name = form.first_name.data
-            last_name = form.last_name.data
+            trainer_name = form.trainer_name.data
             username = form.username.data
-            email = form.email.data
             password = form.password.data
             if Trainer.query.filter_by(username=username).first():
-                flash('That username already exists, please try another!', 'warning')
+                flash('That username already exists!', 'danger')
                 return redirect(url_for('auth.loginPage'))
-            if Trainer.query.filter_by(email=email).first():
-                flash('that email has been used previously, try again', 'warning')
-                return redirect(url_for('auth.loginPage'))
-            trainer = Trainer(first_name, last_name, username, email, password)
+            trainer = Trainer(trainer_name, username, password)
             trainer.saveTrainer()
+            flash(f'Welcome {trainer.trainer_name}! Please login!', 'success')
             return redirect (url_for('auth.loginPage'))
     return render_template('register.html', form=form)
 
@@ -52,4 +46,5 @@ def registerPage():
 @auth.route('/logout')
 def logOut():
     logout_user()
+    flash('Logged out!', 'success')
     return redirect (url_for('homePage'))

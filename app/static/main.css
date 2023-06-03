@@ -1,15 +1,25 @@
-.nav-img{
+.nav-img {
     border-radius: 30px;
 }
 
-.hero-text{
+#login {
+    color: orange;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#form {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-text {
     text-align: center;
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: orange;
     font-family: 'Press Start 2P', cursive;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 body {
@@ -17,10 +27,23 @@ body {
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-size: cover;
-   }
+}
 
 
-#mypoke{
+#mypoke {
+    color: orange;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#header {
+    background: rgba(0, 0, 0, 0.6);
+    color: orange;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+
+.table {
+    background: rgba(0, 0, 0, 0.6);
     color: orange;
     font-family: 'Press Start 2P', cursive;
 }

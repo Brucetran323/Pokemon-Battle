@@ -1,17 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1 class="mt-2" id="header">Leaderboards! </h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">My Win Lose Ratio</th>
+      <th scope="col">Wins</th>
+      <th scope="col">Losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{(current_user.wins+current_user.losses)/current_user.wins}}</th>
+      <td>{{current_user.wins}}</td>
+      <td>{{current_user.losses}}</td>
+      <td> <a href="{{ url_for('pokemon.showMyPokemon') }}" class="btn btn-outline-warning">View My Team!</a></td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="card" style="width: 18rem;">
-    <div class="card-header text-center">
-        Leaderboards!
-    </div>
-    <ul class="list-group list-group-flush">
-        {% for t in trainers %}
-        <li class="list-group-item text-center">{{t.first_name.title()}}:<br>Wins: {{t.wins}}<br>Losses: {{t.losses}}</li>
-        {% endfor %}
-    </ul>
-</div>
-
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Win Lose Ratio</th>
+      <th scope="col">Trainer</th>
+      <th scope="col">Wins</th>
+      <th scope="col">Losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in trainers %}
+    <tr>
+      <th scope="row">{{(t.wins+t.losses)/t.wins}}</th>
+      <td>{{t.trainer_name.title()}}</td>
+      <td>{{t.wins}}</td>
+      <td>{{t.losses}}</td>
+      <td>  <a href="{{ url_for('pokemon.viewTeamsPoke', t_id=t.id) }}" class="btn btn-outline-warning">View {{t.trainer_name.title()}}'s
+        Team!</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

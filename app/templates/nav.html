@@ -6,10 +6,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-bar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active text-danger" aria-current="page" href="/"><i
-                            class="fa-solid fa-house"></i> I Choose:Home!</a>
+                            class="fa-solid fa-house"></i> I Choose Home!</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-danger text-center" href="#" role="button"
@@ -19,34 +19,37 @@
                         Account
                         {% else %}
                         <i class="fa-regular fa-user"></i>
-                        Login or Register to Search!
+                        Login or Register to Battle!
                         {% endif %}
                     </a>
-                    <ul class="dropdown-menu bg-danger">
+                    <ul class="dropdown-menu">
                         {% if current_user.is_authenticated %}
                 </li>
-                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('pokemon.showMyPokemon') }}"><i
-                            class="fa-solid fa-users-gear"></i> {{current_user.first_name.title()}}'s Team</a></li>
-                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.logOut') }}"><i
+                <li><a class="dropdown-item text-danger text-center" href="{{ url_for('pokemon.showMyPokemon') }}"><i
+                            class="fa-solid fa-users-gear"></i> {{current_user.trainer_name.title()}}'s Team</a></li>
+                <li><a class="dropdown-item text-danger text-center" href="{{ url_for('auth.logOut') }}"><i
                             class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                 </li>
                 {% else %}
-                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.registerPage') }}"><i
-                            class="fa-solid fa-user-plus"></i> Register</a></li>
-                <hr class="dropdown-divider">
+                <li><a class="dropdown-item text-danger text-center" href="{{ url_for('auth.loginPage') }}"><i
+                            class="fa-solid fa-door-open"></i> Login</a>
+                    <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item text-warning text-center" href="{{ url_for('auth.loginPage') }}"><i
-                            class="fa-solid fa-door-open"></i> Login</a></li>
+
+                <li><a class="dropdown-item text-danger text-center" href="{{ url_for('auth.registerPage') }}"><i
+                            class="fa-solid fa-user-plus"></i> Register</a></li>
+                </li>
                 {% endif %}
             </ul>
             </li>
             </ul>
             {% if current_user.is_authenticated %}
             <a href="/random"><button type="button" class="btn btn-outline-danger pl">Poke-Slot-Machine!</button></a>
-            <a href="{{ url_for('pokemon.battlePokemon') }}"><button type="button" class="btn btn-outline-warning">Ready for battle?</button></a>
-            <a href="{{ url_for('pokemon.leaderBoard') }}"><button type="button" class="btn btn-outline-info">Rankings!</button></a>
-            <a href="{{ url_for('pokemon.Teams') }}"><button type="button" class="btn btn-outline-success">View Teams!</button></a>
+            <a href="{{ url_for('pokemon.battlePokemon') }}"><button type="button" class="btn btn-outline-warning">Ready
+                    for battle?</button></a>
+            <a href="{{ url_for('pokemon.leaderBoard') }}"><button type="button"
+                    class="btn btn-outline-info">Rankings!</button></a>
             {% endif %}
         </div>
     </div>
-</nav>
+</nav>  

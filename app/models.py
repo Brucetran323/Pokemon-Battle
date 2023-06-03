@@ -16,10 +16,8 @@ teams = db.Table(
 
 class Trainer(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50), nullable=False, )
-    last_name = db.Column(db.String(50), nullable=False, )
+    trainer_name = db.Column(db.String(50), nullable=False, )
     username = db.Column(db.String, nullable=False, unique=True)
-    email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False, )
     wins = db.Column(db.Integer, default=0)
     losses = db.Column(db.Integer, default=0)
@@ -29,11 +27,9 @@ class Trainer(db.Model, UserMixin):
                              lazy='dynamic'
                              )
 
-    def __init__(self, first_name, last_name, username, email, password):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self, trainer_name, username, password):
+        self.trainer_name = trainer_name
         self.username = username
-        self.email = email
         self.password = generate_password_hash(password)
         self.wins = 0
         self.losses = 0

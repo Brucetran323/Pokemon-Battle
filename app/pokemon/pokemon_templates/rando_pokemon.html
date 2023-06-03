@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
-{%if count==5%}
-<div class="text-center mt-3">
-    <h1 id="header">{{current_user.trainer_name}}'s Team</h1>
-    <a href="{{ url_for('pokemon.releaseAll') }}" class="btn btn-danger">Release them all!</a>
+
+<div class=" mt-3 text-center">
+    <h1 id="header">Pokemon slot machine!</h1>
+    <a href="{{ url_for('pokemon.catchAll', p1=pokemon1.id,p2=pokemon2.id,p3=pokemon3.id,p4=pokemon4.id,p5=pokemon5.id)}}"
+        class="btn btn-warning">Make this my team!</a>
+    <a href="{{ url_for('randomPokemon')}}"
+        class="btn btn-info">Re-roll for another team!</a>
 </div>
+
 <div class="border border-dark bg-dark text-center mt-3">
+
     <div class="card-group">
         <div class="card text-center" style="width: 18rem;">
             <img src="{{pokemon1.picture}}" class="card-img-top" alt="...">
@@ -80,15 +86,5 @@
         </div>
     </div>
 
-    {%else%}
-    <div class="card bg-danger text-white" style="width: 18rem;">
-        <img src="https://64.media.tumblr.com/c8b03315f4657e20b910b72d04c492cb/tumblr_p4oungyX8I1vkw0o9o1_1280.gifv"
-            class="card-img-top" alt="empty ball">
-        <div class="card-body">
-            <h5 class="card-title">Go catch something!</h5>
-            <p class="card-text">You've got no pokemon! Go catch some!</p>
-            <a href="/random" class="btn btn-warning">Poke-Slot-Machine</a>
-        </div>
-    </div>
-    {%endif%}
+
     {% endblock %}
